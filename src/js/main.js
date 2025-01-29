@@ -29,6 +29,9 @@ function main() {
 
     // For a dynamically loaded page, create a MutationObserver to detect changes in the DOM
     const observer = new MutationObserver((mutationsList, observer) => {
+        if (!window.location.href.includes("gp/video")) {
+            return;
+        }
         mutationsList.forEach(mutation => {
             if (mutation.type === 'childList') {
                 mutation.addedNodes.forEach(addedNode => {
@@ -41,6 +44,7 @@ function main() {
                 });
             }
         });
+
     });
     observer.observe(document.body, { childList: true, subtree: true });
 
