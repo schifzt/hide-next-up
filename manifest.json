@@ -2,12 +2,13 @@
     "name": "Hide Next-up",
     "version": "1.0",
     "manifest_version": 3,
-    "description": "Hide Next-up in Amazon prime video",
+    "description": "Hide Next-up in Amazon video player",
     "minimum_chrome_version": "102",
     "content_scripts": [
         {
             "matches": [
-                "https://www.amazon.co.jp/*"
+                "https://www.amazon.co.jp/*",
+                "https://www.amazon.com/*"
             ],
             "js": [
                 "./src/js/main.js"

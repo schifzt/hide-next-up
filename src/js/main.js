@@ -1,27 +1,27 @@
-function hideNextUpPopup(addedNode) {
-    addedNode.querySelectorAll('*').forEach(elm => {
-        if (elm.className) {
-            cond1 = elm.className.toLowerCase().includes("nextupcard-wrapper");
-            if (cond1) {
-                // console.log("popup:", elm);
-                elm.style.visibility = "hidden";
-                elm.style.display = "none";
-            }
+function hideNextUpPopup(elm) {
+    for (let className of elm.classList) {
+        cond = className.toLowerCase().includes("nextupcard-wrapper");
+        if (cond) {
+            elm.style.visibility = "hidden";
+            elm.style.display = "none";
+            return true;
         }
-    });
+    }
+    return false;
 };
 
-function turnOffShading(addedNode) {
-    addedNode.querySelectorAll('*').forEach(elm => {
-        if (elm.parentElement && elm.parentElement.className) {
-            cond2 = (elm.parentElement.className.toLowerCase().includes("overlays-container") && elm.childElementCount == 0);
-            if (cond2) {
-                // console.log("shade", elm);
+function turnOffShading(elm) {
+    if (elm.parentElement && elm.childElementCount == 0) {
+        for (let className of elm.parentElement.classList) {
+            cond = className.toLowerCase().includes("overlays-container");
+            if (cond) {
                 elm.style.visibility = "hidden";
                 elm.style.display = "none";
+                return true;
             }
         }
-    });
+    }
+    return false;
 };
 
 function main() {
@@ -32,11 +32,11 @@ function main() {
         mutationsList.forEach(mutation => {
             if (mutation.type === 'childList') {
                 mutation.addedNodes.forEach(addedNode => {
-                    // addedNodeがdiv要素かどうかを確認
                     if (addedNode.nodeType === 1 && addedNode.tagName === 'DIV') {
-                        // console.log('新しく追加されたdiv要素:', addedNode);
-                        hideNextUpPopup(addedNode);
-                        turnOffShading(addedNode);
+                        addedNode.querySelectorAll('*').forEach(elm => { // iterate through all children of addedNode
+                            hideNextUpPopup(elm);
+                            turnOffShading(elm);
+                        });
                     }
                 });
             }

@@ -1,5 +1,5 @@
 # Hide Next-up
-Hide next-up in Amazon prime video
+Extension for Google Chrome to hide "Next-Up" popup and turn off shading effect in Amazon Video Player
 
 ## License
 MIT
