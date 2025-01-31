@@ -2,7 +2,7 @@
     "name": "Hide Next-up",
     "version": "1.0",
     "manifest_version": 3,
-    "description": "Hide Next-up in Amazon video player",
+    "description": "Hide Next-up in web video player",
     "minimum_chrome_version": "102",
     "content_scripts": [
         {
@@ -11,6 +11,8 @@
                 "https://www.amazon.co.jp/*"
             ],
             "js": [
+                "./src/js/amazon.js",
+                "./src/js/netflix.js",
                 "./src/js/main.js"
             ]
         }
